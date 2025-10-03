@@ -3,6 +3,7 @@ package backend.mulkkam.common.config;
 import backend.mulkkam.common.filter.HttpLoggingFilter;
 import backend.mulkkam.common.filter.JwtAuthenticationFilter;
 import backend.mulkkam.common.interceptor.ApiPerformanceInterceptor;
+import backend.mulkkam.common.interceptor.IdempotencyInterceptor;
 import backend.mulkkam.common.resolver.MemberResolver;
 import backend.mulkkam.common.resolver.OauthAccountResolver;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     private final MemberResolver memberResolver;
     private final ApiPerformanceInterceptor apiPerformanceInterceptor;
     private final HttpLoggingFilter httpLoggingFilter;
+    private final IdempotencyInterceptor idempotencyInterceptor;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -45,6 +47,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(apiPerformanceInterceptor)
                 .addPathPatterns("/**");
+        registry.addInterceptor(idempotencyInterceptor);
     }
 
     @Bean
