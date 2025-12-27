@@ -24,12 +24,8 @@ public interface FriendReminderHistoryRepository extends JpaRepository<FriendRem
     @Modifying
     @Query("""
            UPDATE FriendReminderHistory h
-           SET h.remaining = CASE
-                WHEN h.remaining + :restore >= backend.mulkkam.friend.domain.FriendReminderHistory.INIT_REMAINING_VALUE
-                    THEN backend.mulkkam.friend.domain.FriendReminderHistory.INIT_REMAINING_VALUE
-                ELSE h.remaining + :restore
-            END
-           WHERE h.id = :id
+           SET h.remaining = h.remaining + :restore
+           WHERE h.id = :id AND h.remaining + :restore <= backend.mulkkam.friend.domain.FriendReminderHistory.INIT_REMAINING_VALUE
            """)
     int restoreRemaining(@Param("id") Long id, @Param("restore") short restore);
 }
