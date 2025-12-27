@@ -29,7 +29,4 @@ public interface OutboxCompensationRepository extends JpaRepository<OutboxCompen
             )
     """)
     int tryLease(@Param("id") Long id, @Param("leaseExpiresAt") LocalDateTime leaseExpiresAt);
-
-    @Query("select oc.id from OutboxCompensation oc where oc.outboxId = :outboxId")
-    Optional<Long> findIdByOutboxId(@Param("outboxId") Long outboxId);
 }
