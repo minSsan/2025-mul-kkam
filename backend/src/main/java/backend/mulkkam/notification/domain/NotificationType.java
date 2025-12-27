@@ -5,5 +5,6 @@ public enum NotificationType {
     SUGGESTION,
     NOTICE,
     REMIND,
+    FRIEND_REMIND,
     ;
 }

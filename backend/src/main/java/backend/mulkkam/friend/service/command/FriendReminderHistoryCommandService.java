@@ -21,4 +21,11 @@ public class FriendReminderHistoryCommandService {
             throw new CommonException(EXCEED_FRIEND_REMINDER_LIMIT);
         }
     }
+
+    public void restoreRemainingCount(Long id, short restoreCount) {
+        int updated = friendReminderHistoryRepository.restoreRemaining(id, restoreCount);
+        if (updated == 0) {
+            throw new IllegalStateException("Cannot restore friend reminder quota for history id: " + id);
+        }
+    }
 }
