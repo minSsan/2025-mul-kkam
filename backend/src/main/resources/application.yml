@@ -17,10 +17,11 @@ spring:
 management:
   metrics:
     enable:
-      all: false
+      all: true
   endpoints:
     web:
       exposure:
         include:
           - health
           - metrics
+          - prometheus
