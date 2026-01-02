@@ -1,6 +1,8 @@
 package backend.mulkkam.compensation.domain.entity;
 
 import backend.mulkkam.common.domain.BaseEntity;
+import backend.mulkkam.compensation.domain.CompensationStatus;
+import backend.mulkkam.compensation.domain.CompensationType;
 import backend.mulkkam.notification.domain.ProcessingLease;
 import backend.mulkkam.notification.domain.RetryPolicy;
 import jakarta.persistence.Column;
@@ -14,6 +16,8 @@ import jakarta.persistence.Id;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,38 +58,38 @@ public class OutboxCompensation extends BaseEntity {
     public OutboxCompensation(
             Long outboxId,
             CompensationType type,
-            String payload
+            String payload,
+            RetryPolicy retryPolicy
     ) {
         this.outboxId = outboxId;
         this.type = type;
         this.payload = payload;
         this.status = CompensationStatus.READY;
         this.lease = new ProcessingLease();
-        this.retryPolicy = RetryPolicy.defaultPolicy();
+        this.retryPolicy = Objects.requireNonNullElseGet(retryPolicy, RetryPolicy::defaultPolicy);
     }
 
     public void markAsSuccess() {
         this.status = CompensationStatus.SUCCESS;
         this.executedAt = LocalDateTime.now();
+        this.lease.release();
     }
 
     public void markAsFailed() {
         this.status = CompensationStatus.DEAD;
         this.executedAt = LocalDateTime.now();
+        this.retryPolicy.recordFailure();
+        this.lease.release();
     }
 
     public void markAsRetryWaiting(Duration backoff) {
         this.status = CompensationStatus.RETRY_WAITING;
-        this.lease = new ProcessingLease();
         this.executedAt = LocalDateTime.now();
         this.retryPolicy.scheduleNextAttempt(backoff);
+        this.lease.release();
     }
 
     public boolean canRetry() {
-        return retryPolicy.canRetry();
-    }
-
-    public void recordFailure() {
-        retryPolicy.recordFailure();
+        return retryPolicy.isRemainAttempt();
     }
 }

@@ -44,7 +44,7 @@ public class RetryPolicy {
         this.nextAttemptAt = null;
     }
 
-    public boolean canRetry() {
+    public boolean isRemainAttempt() {
         return attemptCount < maxAttempts;
     }
 }

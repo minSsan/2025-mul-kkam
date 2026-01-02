@@ -1,18 +1,18 @@
 package backend.mulkkam.notification.domain.converter;
 
-import backend.mulkkam.notification.domain.vo.SendNotificationRequest;
+import backend.mulkkam.notification.domain.vo.NotificationPayload;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class SendNotificationRequestConverter implements AttributeConverter<SendNotificationRequest, String> {
+public class SendNotificationRequestConverter implements AttributeConverter<NotificationPayload, String> {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(SendNotificationRequest attribute) {
+    public String convertToDatabaseColumn(NotificationPayload attribute) {
         if (attribute == null) {
             return null;
         }
@@ -24,12 +24,12 @@ public class SendNotificationRequestConverter implements AttributeConverter<Send
     }
 
     @Override
-    public SendNotificationRequest convertToEntityAttribute(String dbData) {
+    public NotificationPayload convertToEntityAttribute(String dbData) {
         if (dbData == null || dbData.isEmpty()) {
             return null;
         }
         try {
-            return objectMapper.readValue(dbData, SendNotificationRequest.class);
+            return objectMapper.readValue(dbData, NotificationPayload.class);
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException("Error converting JSON to SendNotificationRequest", e);
         }

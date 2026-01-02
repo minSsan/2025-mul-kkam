@@ -1,8 +1,12 @@
 package backend.mulkkam.notification.domain.entity;
 
 import backend.mulkkam.common.domain.BaseEntity;
+import backend.mulkkam.notification.domain.NotificationOutboxStatus;
+import backend.mulkkam.notification.domain.NotificationTargetType;
+import backend.mulkkam.notification.domain.ProcessingLease;
+import backend.mulkkam.notification.domain.RetryPolicy;
 import backend.mulkkam.notification.domain.converter.SendNotificationRequestConverter;
-import backend.mulkkam.notification.domain.vo.SendNotificationRequest;
+import backend.mulkkam.notification.domain.vo.NotificationPayload;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embedded;
@@ -19,6 +23,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
+import java.util.Objects;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(uniqueConstraints = @UniqueConstraint(
@@ -33,10 +40,12 @@ public class NotificationOutbox extends BaseEntity {
 
     private Long notificationId;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Long memberId;
+    private NotificationTargetType targetType;
 
-    private Long deviceId;
+    @Column(nullable = false)
+    private String targetValue;
 
     @Column(nullable = false, unique = true)
     private String idempotencyKey;
@@ -53,20 +62,24 @@ public class NotificationOutbox extends BaseEntity {
 
     @Convert(converter = SendNotificationRequestConverter.class)
     @Column(columnDefinition = "TEXT")
-    private SendNotificationRequest payload;
+    private NotificationPayload payload;
 
     @Builder
     public NotificationOutbox(
             Long notificationId,
-            Long memberId,
-            Long deviceId,
+            NotificationTargetType targetType,
+            String targetValue,
             String idempotencyKey,
-            SendNotificationRequest payload
+            NotificationPayload payload,
+            RetryPolicy retryPolicy
     ) {
         this.notificationId = notificationId;
-        this.memberId = memberId;
-        this.deviceId = deviceId;
+        this.targetType = targetType;
+        this.targetValue = targetValue;
         this.idempotencyKey = idempotencyKey;
+        this.payload = payload;
+        this.retryPolicy = Objects.requireNonNullElseGet(retryPolicy, RetryPolicy::defaultPolicy);
+        this.lease = new ProcessingLease();
         this.status = NotificationOutboxStatus.READY;
     }
 
