@@ -1,6 +1,6 @@
 package backend.mulkkam.notification.dto.response;
 
-import backend.mulkkam.notification.domain.ReminderSchedule;
+import backend.mulkkam.notification.domain.entity.ReminderSchedule;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalTime;
 

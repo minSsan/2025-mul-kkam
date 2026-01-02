@@ -1,6 +1,6 @@
 package backend.mulkkam.compensation.service;
 
-import backend.mulkkam.compensation.domain.OutboxCompensation;
+import backend.mulkkam.compensation.domain.entity.OutboxCompensation;
 import backend.mulkkam.compensation.repository.OutboxCompensationRepository;
 import backend.mulkkam.compensation.service.dto.CompensationEvent;
 import lombok.RequiredArgsConstructor;

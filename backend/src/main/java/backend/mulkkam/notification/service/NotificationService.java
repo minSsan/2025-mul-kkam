@@ -16,7 +16,7 @@ import backend.mulkkam.device.domain.Device;
 import backend.mulkkam.device.repository.DeviceRepository;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.domain.NotificationType;
 import backend.mulkkam.notification.dto.NotificationInsertDto;
 import backend.mulkkam.notification.dto.NotificationMessageTemplate;

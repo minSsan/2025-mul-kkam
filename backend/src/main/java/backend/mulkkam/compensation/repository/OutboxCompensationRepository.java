@@ -1,6 +1,6 @@
 package backend.mulkkam.compensation.repository;
 
-import backend.mulkkam.compensation.domain.OutboxCompensation;
+import backend.mulkkam.compensation.domain.entity.OutboxCompensation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

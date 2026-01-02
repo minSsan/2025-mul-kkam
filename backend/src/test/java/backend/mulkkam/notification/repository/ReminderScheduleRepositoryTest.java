@@ -5,7 +5,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.domain.vo.MemberNickname;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.ReminderSchedule;
+import backend.mulkkam.notification.domain.entity.ReminderSchedule;
 import backend.mulkkam.support.fixture.ReminderScheduleFixtureBuilder;
 import backend.mulkkam.support.fixture.member.MemberFixtureBuilder;
 import java.time.LocalTime;

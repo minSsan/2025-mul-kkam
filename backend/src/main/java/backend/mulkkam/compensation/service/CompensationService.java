@@ -1,6 +1,6 @@
 package backend.mulkkam.compensation.service;
 
-import backend.mulkkam.compensation.domain.OutboxCompensation;
+import backend.mulkkam.compensation.domain.entity.OutboxCompensation;
 import backend.mulkkam.compensation.service.query.OutboxCompensationQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,6 @@ public class CompensationService {
         if (compensation.canRetry()) {
             compensation.markAsRetryWaiting(RETRY_BACKOFF);
         } else {
-            compensation.recordFailure();
             compensation.markAsFailed();
         }
     }

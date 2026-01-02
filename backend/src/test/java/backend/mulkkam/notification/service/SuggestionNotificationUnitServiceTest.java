@@ -20,8 +20,8 @@ import backend.mulkkam.intake.dto.request.ModifyIntakeTargetAmountBySuggestionRe
 import backend.mulkkam.intake.service.IntakeAmountService;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.Notification;
-import backend.mulkkam.notification.domain.SuggestionNotification;
+import backend.mulkkam.notification.domain.entity.Notification;
+import backend.mulkkam.notification.domain.entity.SuggestionNotification;
 import backend.mulkkam.notification.dto.request.CreateTokenSuggestionNotificationRequest;
 import backend.mulkkam.notification.repository.NotificationRepository;
 import backend.mulkkam.notification.repository.SuggestionNotificationRepository;

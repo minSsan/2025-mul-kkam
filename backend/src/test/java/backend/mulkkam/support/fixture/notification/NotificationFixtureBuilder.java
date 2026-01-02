@@ -1,7 +1,7 @@
 package backend.mulkkam.support.fixture.notification;
 
 import backend.mulkkam.member.domain.Member;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.domain.NotificationType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

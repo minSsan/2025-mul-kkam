@@ -1,4 +1,4 @@
-package backend.mulkkam.notification.domain;
+package backend.mulkkam.notification.domain.entity;
 
 
 import backend.mulkkam.common.domain.BaseEntity;

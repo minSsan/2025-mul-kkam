@@ -1,7 +1,7 @@
 package backend.mulkkam.compensation.service;
 
 import backend.mulkkam.compensation.domain.CompensationType;
-import backend.mulkkam.compensation.domain.OutboxCompensation;
+import backend.mulkkam.compensation.domain.entity.OutboxCompensation;
 import backend.mulkkam.compensation.service.dto.RestoreFriendReminderQuotaPayload;
 import backend.mulkkam.friend.service.command.FriendReminderHistoryCommandService;
 import com.fasterxml.jackson.core.JsonProcessingException;

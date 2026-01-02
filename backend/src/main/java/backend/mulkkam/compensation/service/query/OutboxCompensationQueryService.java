@@ -1,6 +1,6 @@
 package backend.mulkkam.compensation.service.query;
 
-import backend.mulkkam.compensation.domain.OutboxCompensation;
+import backend.mulkkam.compensation.domain.entity.OutboxCompensation;
 import backend.mulkkam.compensation.repository.OutboxCompensationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,8 @@
 package backend.mulkkam.notification.domain;
 
 import backend.mulkkam.member.domain.Member;
+import backend.mulkkam.notification.domain.entity.ReminderSchedule;
+
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;

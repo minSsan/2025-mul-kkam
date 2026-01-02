@@ -1,7 +1,8 @@
-package backend.mulkkam.notification.domain;
+package backend.mulkkam.notification.domain.entity;
 
 import backend.mulkkam.common.domain.BaseEntity;
 import backend.mulkkam.member.domain.Member;
+import backend.mulkkam.notification.domain.NotificationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

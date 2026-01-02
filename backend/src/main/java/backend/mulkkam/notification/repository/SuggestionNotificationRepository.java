@@ -1,7 +1,7 @@
 package backend.mulkkam.notification.repository;
 
-import backend.mulkkam.notification.domain.Notification;
-import backend.mulkkam.notification.domain.SuggestionNotification;
+import backend.mulkkam.notification.domain.entity.Notification;
+import backend.mulkkam.notification.domain.entity.SuggestionNotification;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

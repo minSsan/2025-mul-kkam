@@ -1,4 +1,4 @@
-package backend.mulkkam.compensation.domain;
+package backend.mulkkam.compensation.domain.entity;
 
 import backend.mulkkam.common.domain.BaseEntity;
 import backend.mulkkam.notification.domain.ProcessingLease;
