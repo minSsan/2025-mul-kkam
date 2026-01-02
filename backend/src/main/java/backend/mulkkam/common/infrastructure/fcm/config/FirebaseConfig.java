@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Base64;
 
 @Configuration
@@ -28,6 +29,8 @@ public class FirebaseConfig {
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(decoded)))
                     .setProjectId(projectId)
+                    .setConnectTimeout((int) Duration.ofSeconds(5).toMillis())
+                    .setReadTimeout((int) Duration.ofSeconds(10).toMillis())
                     .build();
             return FirebaseApp.initializeApp(options);
         } else {
