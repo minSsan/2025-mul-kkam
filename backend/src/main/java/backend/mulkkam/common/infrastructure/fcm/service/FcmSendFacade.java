@@ -23,14 +23,14 @@ public class FcmSendFacade {
     }
 
     private void sendInBatches(SendMessageRequest request) {
-        List<String> tokens = ((MulticastTarget) request.target()).tokens();
-        if (tokens == null || tokens.isEmpty()) {
+        List<MulticastTarget.OutboxToken> pairs = ((MulticastTarget) request.target()).pairs();
+        if (pairs == null || pairs.isEmpty()) {
             return;
         }
 
-        for (int start = 0; start < tokens.size(); start += FCM_BATCH_SIZE) {
-            int end = Math.min(start + FCM_BATCH_SIZE, tokens.size());
-            List<String> batch = tokens.subList(start, end);
+        for (int start = 0; start < pairs.size(); start += FCM_BATCH_SIZE) {
+            int end = Math.min(start + FCM_BATCH_SIZE, pairs.size());
+            List<MulticastTarget.OutboxToken> batch = pairs.subList(start, end);
 
             SendMessageRequest batchedRequest = new SendMessageRequest(
                     request.title(),
