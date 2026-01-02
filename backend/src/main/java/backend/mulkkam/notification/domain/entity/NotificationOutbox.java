@@ -68,8 +68,26 @@ public class NotificationOutbox extends BaseEntity {
         this.deviceId = deviceId;
         this.idempotencyKey = idempotencyKey;
         this.status = NotificationOutboxStatus.READY;
-        this.payload = payload;
-        this.lease = new ProcessingLease();
-        this.retryPolicy = RetryPolicy.defaultPolicy();
+    }
+
+    public void markAsSuccess() {
+        this.status = NotificationOutboxStatus.SUCCESS;
+        this.lease.release();
+    }
+
+    public void markAsFailed() {
+        this.status = NotificationOutboxStatus.FAILED;
+        this.retryPolicy.recordFailure();
+        this.lease.release();
+    }
+
+    public void markAsRetryWaiting(Duration backoff) {
+        this.status = NotificationOutboxStatus.RETRY_WAITING;
+        this.retryPolicy.scheduleNextAttempt(backoff);
+        this.lease.release();
+    }
+
+    public boolean canRetry() {
+        return retryPolicy.isRemainAttempt();
     }
 }

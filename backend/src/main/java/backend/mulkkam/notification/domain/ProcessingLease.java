@@ -14,7 +14,8 @@ public class ProcessingLease {
 
     private LocalDateTime leaseExpiresAt;
 
-    public boolean isExpired() {
-        return leaseExpiresAt != null && LocalDateTime.now().isAfter(leaseExpiresAt);
+    public void release() {
+        this.leasedAt = null;
+        this.leaseExpiresAt = null;
     }
 }
