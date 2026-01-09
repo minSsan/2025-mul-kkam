@@ -17,16 +17,20 @@ public interface OutboxCompensationRepository extends JpaRepository<OutboxCompen
     @Query("""
             UPDATE OutboxCompensation oc
             SET oc.status = backend.mulkkam.compensation.domain.CompensationStatus.LEASED,
-                oc.lease.leasedAt = CURRENT_TIMESTAMP,
+                oc.lease.leasedAt = :now,
                 oc.lease.leaseExpiresAt = :leaseExpiresAt
             WHERE oc.id = :id AND (
                 oc.status = backend.mulkkam.compensation.domain.CompensationStatus.READY
                 OR (
                     oc.status = backend.mulkkam.compensation.domain.CompensationStatus.RETRY_WAITING
-                    AND (oc.retryPolicy.nextAttemptAt IS NULL OR oc.retryPolicy.nextAttemptAt <= CURRENT_TIMESTAMP)
+                    AND oc.retryPolicy.nextAttemptAt <= :now
                 )
-                OR (oc.status = backend.mulkkam.compensation.domain.CompensationStatus.LEASED AND oc.lease.leaseExpiresAt <= CURRENT_TIMESTAMP)
+                OR (oc.status = backend.mulkkam.compensation.domain.CompensationStatus.LEASED AND oc.lease.leaseExpiresAt <= :now)
             )
     """)
-    int tryLease(@Param("id") Long id, @Param("leaseExpiresAt") LocalDateTime leaseExpiresAt);
+    int tryLease(
+            @Param("id") Long id,
+            @Param("now") LocalDateTime now,
+            @Param("leaseExpiresAt") LocalDateTime leaseExpiresAt
+    );
 }

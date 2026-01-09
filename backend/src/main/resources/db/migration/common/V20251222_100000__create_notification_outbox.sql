@@ -1,9 +1,9 @@
 CREATE TABLE notification_outbox (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     notification_id BIGINT NULL,
-    member_id BIGINT NOT NULL,
-    device_id BIGINT NULL,
-    idempotency_key VARCHAR(200) NOT NULL,
+    target_type VARCHAR(20) NOT NULL,
+    target_value VARCHAR(255) NOT NULL, -- Device token과 동일 조건
+    idempotency_key VARCHAR(255) NOT NULL,
     status VARCHAR(20) NOT NULL,
     attempt_count SMALLINT NOT NULL DEFAULT 0,
     max_attempts SMALLINT NOT NULL DEFAULT 5,

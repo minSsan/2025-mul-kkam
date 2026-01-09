@@ -79,8 +79,8 @@ public class NotificationOutbox extends BaseEntity {
         this.idempotencyKey = idempotencyKey;
         this.payload = payload;
         this.retryPolicy = Objects.requireNonNullElseGet(retryPolicy, RetryPolicy::defaultPolicy);
-        this.lease = new ProcessingLease();
         this.status = NotificationOutboxStatus.READY;
+        this.lease = new ProcessingLease();
     }
 
     public void markAsSuccess() {

@@ -1,9 +1,10 @@
 package backend.mulkkam.notification.domain;
 
 import jakarta.persistence.Embeddable;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Embeddable
 @Getter

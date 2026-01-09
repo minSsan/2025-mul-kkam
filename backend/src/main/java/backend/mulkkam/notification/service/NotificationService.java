@@ -298,6 +298,7 @@ public class NotificationService {
         notificationBatchRepository.batchInsert(notificationInsertDtos, CHUNK_SIZE);
     }
 
+    // TODO: saveOutboxs 로 변경 -> Outbox 배치 insert
     private void sendNotifications(
             List<Long> memberIds,
             NotificationMessageTemplate template

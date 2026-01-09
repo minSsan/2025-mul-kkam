@@ -41,4 +41,20 @@ public interface ReminderScheduleRepository extends JpaRepository<ReminderSchedu
     );
 
     void deleteAllByMemberId(Long memberId);
+
+    @Query("""
+        select rs
+        from ReminderSchedule rs
+        join fetch rs.member m
+        where HOUR(rs.schedule) = HOUR(:schedule)
+          and MINUTE(rs.schedule) = MINUTE(:schedule)
+          and m.isReminderEnabled = true
+          and (:lastId is null or rs.id > :lastId)
+        order by rs.id asc
+    """)
+    List<ReminderSchedule> findChunkBySchedule(
+            @Param("schedule") LocalTime schedule,
+            @Param("lastId") Long lastId,
+            Pageable pageable
+    );
 }

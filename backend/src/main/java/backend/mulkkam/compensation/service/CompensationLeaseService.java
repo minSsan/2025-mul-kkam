@@ -18,7 +18,8 @@ public class CompensationLeaseService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public boolean claim(Long compensationId) {
-        LocalDateTime leaseExpiresAt = LocalDateTime.now().plusSeconds(LEASE_EXPIRE_LIMIT);
-        return compensationRepository.tryLease(compensationId, leaseExpiresAt) > 0;
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime leaseExpiresAt = now.plusSeconds(LEASE_EXPIRE_LIMIT);
+        return compensationRepository.tryLease(compensationId, now, leaseExpiresAt) > 0;
     }
 }

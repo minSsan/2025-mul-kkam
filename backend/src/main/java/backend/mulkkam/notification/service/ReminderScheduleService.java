@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,18 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ReminderScheduleService {
 
-    private static final String MINUTELY_CRON = "0 * * * * *";
-
     private final ReminderScheduleRepository reminderScheduleRepository;
     private final MemberRepository memberRepository;
     private final NotificationService notificationService;
-
-    @Transactional
-    @Scheduled(cron = MINUTELY_CRON)
-    public void scheduleReminderNotification() {
-        LocalDateTime now = LocalDateTime.now();
-        executeReminderNotification(now);
-    }
 
     @Transactional
     public void executeReminderNotification(LocalDateTime now) {
