@@ -16,7 +16,7 @@ import backend.mulkkam.common.exception.FailureBody;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.domain.vo.MemberNickname;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.domain.NotificationType;
 import backend.mulkkam.notification.dto.response.GetUnreadNotificationsCountResponse;
 import backend.mulkkam.notification.dto.response.ReadNotificationsResponse;

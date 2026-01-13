@@ -16,7 +16,7 @@ import backend.mulkkam.device.domain.Device;
 import backend.mulkkam.device.repository.DeviceRepository;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.domain.NotificationType;
 import backend.mulkkam.notification.dto.NotificationInsertDto;
 import backend.mulkkam.notification.dto.NotificationMessageTemplate;
@@ -298,6 +298,7 @@ public class NotificationService {
         notificationBatchRepository.batchInsert(notificationInsertDtos, CHUNK_SIZE);
     }
 
+    // TODO: saveOutboxs 로 변경 -> Outbox 배치 insert
     private void sendNotifications(
             List<Long> memberIds,
             NotificationMessageTemplate template

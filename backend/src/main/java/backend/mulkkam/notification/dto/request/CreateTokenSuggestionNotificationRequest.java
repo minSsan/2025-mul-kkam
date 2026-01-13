@@ -3,9 +3,9 @@ package backend.mulkkam.notification.dto.request;
 import backend.mulkkam.common.infrastructure.fcm.domain.Action;
 import backend.mulkkam.common.infrastructure.fcm.dto.request.SendMessageByFcmTokenRequest;
 import backend.mulkkam.member.domain.Member;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.domain.NotificationType;
-import backend.mulkkam.notification.domain.SuggestionNotification;
+import backend.mulkkam.notification.domain.entity.SuggestionNotification;
 import java.time.LocalDateTime;
 
 public record CreateTokenSuggestionNotificationRequest(

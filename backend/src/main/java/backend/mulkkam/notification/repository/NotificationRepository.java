@@ -1,7 +1,7 @@
 package backend.mulkkam.notification.repository;
 
 import backend.mulkkam.member.domain.Member;
-import backend.mulkkam.notification.domain.Notification;
+import backend.mulkkam.notification.domain.entity.Notification;
 import backend.mulkkam.notification.dto.ReadNotificationRow;
 import java.time.LocalDateTime;
 import java.util.List;

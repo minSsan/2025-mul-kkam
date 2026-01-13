@@ -1,7 +1,7 @@
 package backend.mulkkam.support.fixture.notification;
 
-import backend.mulkkam.notification.domain.Notification;
-import backend.mulkkam.notification.domain.SuggestionNotification;
+import backend.mulkkam.notification.domain.entity.Notification;
+import backend.mulkkam.notification.domain.entity.SuggestionNotification;
 
 public class SuggestionNotificationFixtureBuilder {
 

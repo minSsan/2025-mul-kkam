@@ -16,7 +16,7 @@ import backend.mulkkam.auth.repository.OauthAccountRepository;
 import backend.mulkkam.common.exception.FailureBody;
 import backend.mulkkam.member.domain.Member;
 import backend.mulkkam.member.repository.MemberRepository;
-import backend.mulkkam.notification.domain.ReminderSchedule;
+import backend.mulkkam.notification.domain.entity.ReminderSchedule;
 import backend.mulkkam.notification.dto.request.CreateReminderScheduleRequest;
 import backend.mulkkam.notification.dto.request.ModifyReminderScheduleTimeRequest;
 import backend.mulkkam.notification.dto.response.ReadReminderSchedulesResponse;

@@ -1,4 +1,4 @@
-package backend.mulkkam.notification.domain;
+package backend.mulkkam.notification.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
